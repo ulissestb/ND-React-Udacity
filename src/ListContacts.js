@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class ListContacts extends Component{
     static propTypes= {
@@ -12,7 +13,7 @@ class ListContacts extends Component{
     updateQuery = (query) => {
         this.setState( () => ({
             query: query.trim()
-        })) 
+        }))
     }
     clearQuery = () => {
         this.updateQuery('')
@@ -29,13 +30,17 @@ class ListContacts extends Component{
         return(
             <div clasName="list-contacts">
                 <div className="list-contacts-top">
-                    <input 
+                    <input
                         className='search-contacts'
                         type='text'
                         placeholder='Search Contacts'
                         value={query}
                         onChange={ (event) => this.updateQuery(event.target.value)}
                     />
+                    <Link
+                    to='/create'
+                    className='add-contact'
+                    >Add Contact</Link>
                 </div>
                 <br/><br/>
 
@@ -60,13 +65,13 @@ class ListContacts extends Component{
                             <p>{contact.name}</p>
                             <p>{contact.handle}</p>
                         </div>
-                        <button 
+                        <button
                         onClick={()=> onDeleteContact(contact)}
                         className='contact-remove'>
-                            Remove 
+                            Remove
                         </button>
                     </li>
-                ))}  
+                ))}
                 </ol>
             </div>
         )
@@ -74,4 +79,3 @@ class ListContacts extends Component{
 }
 
 export default ListContacts
-
